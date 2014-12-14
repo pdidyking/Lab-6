@@ -1,4 +1,10 @@
+#include <stdio.h>
+
 #define QUEUE_SIZE 100
+#define PLUS  enqueue
+#define MINUS dequeue
+
+#include "datastruct.h"
 
 
 typedef struct 
@@ -12,7 +18,7 @@ typedef struct
 queue q;
 
 
-void initque()
+void initqueue()
 {
     q.first = 0;
     q.last = QUEUE_SIZE - 1;
@@ -20,8 +26,7 @@ void initque()
 }
 
 
-
-void enqueue(int x)
+int enqueue(int x)
 {
     if (q.count <= 100)
     {
@@ -29,12 +34,10 @@ void enqueue(int x)
         q.q[ q.last ] = x;
         q.count = q.count + 1;
     }
+    
     else
-    {	
     	printf("Overflow!");
-    }
 }
-
 
 
 int dequeue()
@@ -43,7 +46,24 @@ int dequeue()
     {
 	    int x = q.q[ q.first ];
 	    q.first = (q.first + 1) % QUEUE_SIZE;
-	    q.count = q.count - 1;return x;
+	    q.count = q.count - 1; return x;
 	}
 return 0;
+}
+
+
+void print_datastructure()
+{
+    while (q.count)
+        printf("%d\n", dequeue());
+}
+
+
+int main()
+{   
+    initqueue();
+    
+    parse_exec();
+    print_datastructure();
+    return 0;
 }

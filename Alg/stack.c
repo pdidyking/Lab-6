@@ -1,10 +1,16 @@
-#define MAX 100
+#include <stdio.h>
+
+#define STACK_SIZE 100
+#define PLUS push
+#define MINUS pop
+
+#include "datastruct.h"
 
 
-typedef struct  
+typedef struct
 {
-    int     data[MAX];
-    int     size;
+	int data[STACK_SIZE];
+	int size;
 } stack;
 
 stack s;
@@ -26,7 +32,7 @@ int top()
 
 int push(int x)
 {
-    if (s.size < MAX)
+    if (s.size < STACK_SIZE)
         s.data[s.size++] = x;
 }
 
@@ -38,4 +44,25 @@ int pop()
     else
         s.size--;
 return 0;
+}
+
+
+void print_datastructure()
+{
+    printf("%d\n", top());
+    while (s.size - 1)
+    {
+        pop();
+        printf("%d\n", top());
+    }
+}
+
+
+int main()
+{   
+    initstack();
+
+    parse_exec();
+    print_datastructure();
+    return 0;
 }
